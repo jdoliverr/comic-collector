@@ -26,6 +26,11 @@ nav {
   justify-content: space-around;
 }
 
+.nav-link {
+  font-size: 17px;
+  margin: 10px;
+}
+
 header {
   text-align: center;
   padding-top: 30px;
@@ -53,6 +58,42 @@ header {
   width: 170px;
   height: 35px;
   font-size: 20px;
+}
+
+.add-comic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mark-as-read {
+  height: 15px;
+}
+
+.description-input {
+  height: 100px;
+  resize: none;
+}
+
+.add-comic-input {
+  margin: 10px;
+  width: 70%;
+}
+
+.description-select {
+  margin: 10px;
+  width: 120px;
+}
+
+option {
+  text-align: center;
+}
+
+.add-comic-submit {
+  margin: 15px;
 }
 
 .page-header {
@@ -146,9 +187,13 @@ input {
 }
 
 @media only screen and (min-width: 500px) {
-  .login-form, .signup-form {
+  .login-form, .signup-form, .add-comic-form {
       width: 70%;
   }
+
+  /* .add-comic-input {
+    width: 50%;
+  } */
 }
 
 @media only screen and (min-width: 700px) {
@@ -156,9 +201,16 @@ input {
       width: 70%;
   }
 
-  .login-form, .signup-form {
+  .login-form, .signup-form, .add-comic-form {
     width: 60%;
   }
+
+  .title-input, .author-input, .issue-input {
+    width: 40%;
+  }
+  /* .add-comic-input {
+    width: 35%;
+  } */
 }
 
 @media only screen and (min-width: 800px) {
@@ -172,6 +224,11 @@ input {
       width: 50%;
       height: 320px;
   }
+
+  .add-comic-form {
+    width: 50%;
+    height: 525px;
+  }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -179,21 +236,28 @@ input {
       width: 60%;
   }
 
-  .login-form, .signup-form {
+  .login-form, .signup-form, .add-comic-form {
     width: 30%;
   }
 }
-
 
 
 @media only screen and (min-width: 1200px) {
   .placeholder {
       width: 45%;
   }
+
+  /* .add-comic-input {
+    width: 30%;
+  } */
 }
 
 @media only screen and (min-width: 1600px) {
   .placeholder {
       width: 35%;
+  }
+
+  .title-input, .author-input, .issue-input {
+    width: 30%;
   }
 }

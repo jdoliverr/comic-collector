@@ -7,6 +7,7 @@ import login from './login/login';
 import collection from './collection/collection';
 import wishlist from './wishlist/wishlist';
 import signup from './signup/signup';
+import addComic from './add-comic/add-comic';
 
 class App extends React.Component {
   
@@ -25,6 +26,7 @@ class App extends React.Component {
             <Route path='/signup' component={signup}/>
             <Route path='/collection' component={collection}/>
             <Route path='/wishlist' component={wishlist}/>
+            <Route path='/addcomic' component={addComic}/>
         </main>
       </div>
       

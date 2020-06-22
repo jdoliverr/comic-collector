@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function wishlist(props) {
     console.log('wishlist');
@@ -50,7 +51,9 @@ function wishlist(props) {
             </ul>
             {/* likely moving add button to top of page */}
             <div class="button-bar">
-                <button>Add Comics</button>
+                <button>
+                    <NavLink to='/addcomic'>Add Comics</NavLink>
+                </button>
             </div>
         </div>
     )
