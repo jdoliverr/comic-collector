@@ -1,62 +1,55 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import UserContext from '../UserContext';
 
-function wishlist(props) {
-    console.log('wishlist');
-    return (
-        <div>
-            <h2 className='page-header'>My Wish List</h2>
-            <div class="sort-and-search">
-                <div class="sort-box">
-                    <label for="sort-dropdown">Sort:</label>
-                    <select name="sort-dropdown" id="sort-dropdown">
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                        <option value="read">Read</option>
-                    </select>
+class wishlist extends React.Component {
+    static contextType = UserContext;
+
+    render() {
+        const { wishlist } = this.context
+        const comicList = wishlist.map(comic => {
+            return (
+                <li>
+                    <h3>Title: {comic.title}</h3>
+                    <p><strong>Author(s):</strong> {comic.author}</p>
+                    <p><strong>Issue:</strong> {comic.issue}</p>
+                    <p><strong>Read:</strong> {comic.read}</p>
+                    <p><strong>Description:</strong> {comic.description}</p>
+                    <button>Mark as Read</button>
+                    <button>Remove</button>
+                </li>
+            )
+        });
+        return (
+            <div>
+                <h2 className='page-header'>My Wish List</h2>
+                <div className="sort-and-search">
+                    <div className="sort-box">
+                        <label htmlFor="sort-dropdown">Sort:</label>
+                        <select name="sort-dropdown" id="sort-dropdown">
+                            <option value="title">Title</option>
+                            <option value="author">Author</option>
+                            <option value="read">Read</option>
+                        </select>
+                    </div>
+                    <div className="search-box">
+                        <label htmlFor="search-collection">Search: </label>
+                        <input type="text" name="search-collection" />
+                    </div>
                 </div>
-                <div class="search-box">
-                    <label for="search-collection">Search: </label>
-                    <input type="text" name="search-collection" />
+                <ul className="comics-list">
+                    {comicList}
+                </ul>
+                {/* likely moving add button to top of page */}
+                <div className="button-bar">
+                <Link to='/addcomic'>
+                    <button>Add Comics</button>
+                </Link>
                 </div>
             </div>
-            <ul class="comics-list">
-                <li class="comics">
-                    <h3>Title: Title1</h3>
-                    <p><strong>Author(s):</strong> Author1</p>
-                    <p><strong>Issue:</strong> 1</p>
-                    <p><strong>Read:</strong> Yes</p>
-                    <p><strong>Description:</strong> Sample1  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione excepturi veritatis itaque praesentium commodi, velit, suscipit porro quaerat distinctio numquam ducimus minus asperiores sed fugit perferendis laborum nobis, quo architecto.</p>
-                    <button>Mark as Read</button>
-                    <button>Remove</button>
-                </li>
-                <li class="comics">
-                    <h3><strong>Title:</strong> Title2</h3>
-                    <p><strong>Author(s):</strong> Author2</p>
-                    <p><strong>Issue:</strong> 2</p>
-                    <p><strong>Read:</strong> Yes</p>
-                    <p><strong>Description:</strong> Sample2</p>
-                    <button>Mark as Read</button>
-                    <button>Remove</button>
-                </li>
-                <li class="comics">
-                    <h3><strong>Title:</strong> Title3</h3>
-                    <p><strong>Author(s):</strong> Author3</p>
-                    <p><strong>Issue:</strong> 3</p>
-                    <p><strong>Read:</strong> No</p>
-                    <p><strong>Description:</strong> Sample3</p>
-                    <button>Mark as Read</button>
-                    <button>Remove</button>
-                </li>
-            </ul>
-            {/* likely moving add button to top of page */}
-            <div class="button-bar">
-                <button>
-                    <NavLink to='/addcomic'>Add Comics</NavLink>
-                </button>
-            </div>
-        </div>
-    )
+        )
+    }
+
 };
 
 export default wishlist;

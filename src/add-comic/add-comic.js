@@ -1,33 +1,39 @@
 import React from 'react';
+import UserContext from '../UserContext';
 
-function addComic(props) {
-    return (
-        <form class="add-comic-form">
-            <h2>New Comic</h2>
-            <label for="title-input">Title:</label>
-            <input type="text" name="title-input" class="title-input add-comic-input" required />
+class addComic extends React.Component {
+    static contextType = UserContext;
 
-            <label for="author-input">Author(s):</label>
-            <input type="text" name="author-input" class="author-input add-comic-input" required />
+    render() {
+        const { handleAddComic } = this.context
+        return (
+            <form className="add-comic-form" onSubmit={handleAddComic}>
+                <h2>New Comic</h2>
+                <label htmlFor="title-input">Title:</label>
+                <input type="text" id="title-input" className="title-input add-comic-input" name='title' required />
 
-            <label for="issue-input">Issue:</label>
-            <input type="number" name="issue-input" class="issue-input add-comic-input" required />
+                <label htmlFor="author-input">Author(s):</label>
+                <input type="text" id="author-input" className="author-input add-comic-input" name='author' required />
 
-            <label for="mark-as-read">Mark as read:</label>
-            <input type="checkbox" name="mark-as-read" class="mark-as-read add-comic-input" required />
+                <label htmlFor="issue-input">Issue:</label>
+                <input type="number" id="issue-input" className="issue-input add-comic-input" name='issue' required />
 
-            <label for="description-input">Description:</label>
-            <textarea type="text" name="description-input" class="description-input add-comic-input" required />
+                <label htmlFor="mark-as-read">Mark as read:</label>
+                <input type="checkbox" id="mark-as-read" className="mark-as-read add-comic-input" name='read' value='yes' />
 
-            <label for="desination-input">Add to:</label>
-            <select name="destination desination-input" className='desination-select'>
-                <option value="collection">Collection</option>
-                <option value="wish-list">Wish List</option>
-            </select>
+                <label htmlFor="description-input">Description:</label>
+                <textarea type="text" id="description-input" className="description-input add-comic-input" name='description' required />
 
-            <button class="add-comic-submit">Submit</button>
-        </form>
-    );
+                <label htmlFor="desination-input">Add to:</label>
+                <select id="destination desination-input" className='desination-select' name='destination' >
+                    <option value="collection">Collection</option>
+                    <option value="wish-list">Wish List</option>
+                </select>
+
+                <button className="add-comic-submit" type='submit' >Submit</button>
+            </form>
+        );
+    }
 };
 
 export default addComic;
