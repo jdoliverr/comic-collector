@@ -6,6 +6,7 @@ import home from './home/home';
 import login from './login/login';
 import collection from './collection/collection';
 import wishlist from './wishlist/wishlist';
+import signup from './signup/signup';
 
 class App extends React.Component {
   
@@ -21,7 +22,8 @@ class App extends React.Component {
             <Route exact path='/' component={landing}/>
             <Route path='/home' component={home}/>
             <Route path='/login' component={login}/>
-            <Route path='/collection' compnent={collection}/>
+            <Route path='/signup' component={signup}/>
+            <Route path='/collection' component={collection}/>
             <Route path='/wishlist' component={wishlist}/>
         </main>
       </div>
