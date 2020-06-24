@@ -19,7 +19,7 @@ function home(props) {
             </Link>
 
             {/* likely moving add button to top of screen */}
-            <div class="button-bar">
+            <div className="button-bar">
                 <Link to='/addcomic'>
                     <button>Add Comics</button>
                 </Link>

@@ -35,7 +35,7 @@ function landing(props) {
                 <button className='fake-button'>Remove</button>
             </div>
             <h2 className='page-header'>Note which issues you have read so you never lose your place in a series</h2>
-            <button class="big-button">Mark as Read</button>
+            <button className="big-button">Mark as Read</button>
         </div>
     )
 };

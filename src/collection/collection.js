@@ -7,17 +7,23 @@ class collection extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { collection } = this.context
+        const { collection, deleteComicCollection } = this.context
         const comicList = collection.map(comic => {
+            let read = ''
+            if(comic.is_read) {
+                read = 'yes'
+            }else{
+                read = 'no'
+            }
             return (
-                <li>
-                    <h3>Title: {comic.title}</h3>
-                    <p><strong>Author(s):</strong> {comic.author}</p>
+                <li key={comic.id}>
+                    <h3>Title: {comic.comic_title}</h3>
+                    <p><strong>Author(s):</strong> {comic.comic_author}</p>
                     <p><strong>Issue:</strong> {comic.issue}</p>
-                    <p><strong>Read:</strong> {comic.read}</p>
+                    <p><strong>Read:</strong> {read}</p>
                     <p><strong>Description:</strong> {comic.description}</p>
                     <button>Mark as Read</button>
-                    <button>Remove</button>
+                    <button className='delete-comic' onClick={() => deleteComicCollection(comic.id)}>Remove</button>
                 </li>
             )
         })

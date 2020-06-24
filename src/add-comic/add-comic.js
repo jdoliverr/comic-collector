@@ -19,13 +19,13 @@ class addComic extends React.Component {
                 <input type="number" id="issue-input" className="issue-input add-comic-input" name='issue' required />
 
                 <label htmlFor="mark-as-read">Mark as read:</label>
-                <input type="checkbox" id="mark-as-read" className="mark-as-read add-comic-input" name='read' value='yes' />
+                <input type="checkbox" id="mark-as-read" className="mark-as-read add-comic-input" name='read'/>
 
                 <label htmlFor="description-input">Description:</label>
                 <textarea type="text" id="description-input" className="description-input add-comic-input" name='description' required />
 
                 <label htmlFor="desination-input">Add to:</label>
-                <select id="destination desination-input" className='desination-select' name='destination' >
+                <select id="desination-input" className='desination-select' name='destination' >
                     <option value="collection">Collection</option>
                     <option value="wish-list">Wish List</option>
                 </select>
