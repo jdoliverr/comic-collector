@@ -7,7 +7,7 @@ class collection extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { collection, deleteComicCollection } = this.context
+        const { collection, deleteComicCollection, updateReadCollection, handleSort } = this.context
         const comicList = collection.map(comic => {
             let read = ''
             if(comic.is_read) {
@@ -17,12 +17,12 @@ class collection extends React.Component {
             }
             return (
                 <li key={comic.id}>
-                    <h3>Title: {comic.comic_title}</h3>
+                    <h3 name='title'>Title: {comic.comic_title}</h3>
                     <p><strong>Author(s):</strong> {comic.comic_author}</p>
                     <p><strong>Issue:</strong> {comic.issue}</p>
                     <p><strong>Read:</strong> {read}</p>
                     <p><strong>Description:</strong> {comic.description}</p>
-                    <button>Mark as Read</button>
+                    <button onClick={() => updateReadCollection(comic.id)}>Mark as Read</button>
                     <button className='delete-comic' onClick={() => deleteComicCollection(comic.id)}>Remove</button>
                 </li>
             )
@@ -33,10 +33,11 @@ class collection extends React.Component {
                 <div className="sort-and-search">
                     <div className="sort-box">
                         <label htmlFor="sort-dropdown">Sort:</label>
-                        <select name="sort-dropdown" id="sort-dropdown">
+                        <select name="sort-dropdown" id="sort-dropdown" onChange={handleSort}>
+                            <option>-Sort by-</option>
                             <option value="title">Title</option>
                             <option value="author">Author</option>
-                            <option value="read">Read</option>
+                            {/* <option value="read">Read</option> */}
                         </select>
                     </div>
                     <div className="search-box">

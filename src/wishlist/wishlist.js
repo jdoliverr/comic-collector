@@ -6,7 +6,7 @@ class wishlist extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { wishlist, deleteComicWishlist } = this.context
+        const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort } = this.context
         const comicList = wishlist.map(comic => {
             let read = ''
             if(comic.is_read) {
@@ -21,7 +21,7 @@ class wishlist extends React.Component {
                     <p><strong>Issue:</strong> {comic.issue}</p>
                     <p><strong>Read:</strong> {read}</p>
                     <p><strong>Description:</strong> {comic.description}</p>
-                    <button>Mark as Read</button>
+                    <button onClick={() => updateReadWishlist(comic.id)}>Mark as Read</button>
                     <button className='delete-comic' onClick={() => deleteComicWishlist(comic.id)}>Remove</button>
                 </li>
             )
@@ -32,10 +32,11 @@ class wishlist extends React.Component {
                 <div className="sort-and-search">
                     <div className="sort-box">
                         <label htmlFor="sort-dropdown">Sort:</label>
-                        <select name="sort-dropdown" id="sort-dropdown">
+                        <select name="sort-dropdown" id="sort-dropdown" onChange={handleSort}>
+                            <option>-Sort by-</option>
                             <option value="title">Title</option>
                             <option value="author">Author</option>
-                            <option value="read">Read</option>
+                            {/* <option value="read">Read</option> */}
                         </select>
                     </div>
                     <div className="search-box">
