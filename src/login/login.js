@@ -1,21 +1,57 @@
 import React from 'react';
+import TokenService from '../services/token-service';
+import AuthApiService from '../services/auth-api-service';
 import UserContext from '../UserContext';
 
 class login extends React.Component {
     static contextType = UserContext;
+    state = {
+        error: null,
+    }
+
+    handleLoginSubmit = (event) => {
+        event.preventDefault();
+        TokenService.saveAuthToken(
+            TokenService.makeBasicAuthToken(event.target.userName.value, event.target.password)
+        )
+        this.setState({
+            logged_in: true
+        })
+        this.props.history.push('/home');
+    }
+
+    handleSubmitJwtAuth = event => {
+        event.preventDefault()
+        this.setState({ error: null })
+        const { user_name, password } = event.target
+
+        AuthApiService.postLogin({
+            user_name: user_name.value,
+            password: password.value,
+        })
+            .then(res => {
+                
+                user_name.value = ''
+                password.value = ''
+                TokenService.saveAuthToken(res.authToken)
+                this.props.onLoginSuccess()
+            })
+            .catch(res => {
+                this.setState({ error: res.error })
+            })
+    }
 
     render() {
-        const { handleLoginSubmit } = this.context
         return (
-            <form className="login-form">
+            <form className="login-form" onSubmit={this.handleSubmitJwtAuth}>
                 <h2 className='page-header'>Login</h2>
                 <label htmlFor="username-input" className='username-input-label input-label'>Username</label>
-                <input type="text" name="username-input" className='username-input input' />
+                <input type="text" name="user_name" id='username-input' className='username-input input' />
 
                 <label htmlFor="password-input" className='password-input-label input-label'>Password</label>
-                <input type="text" name="password-input" className='password-input input' />
+                <input type="text" name="password" id='password-input' className='password-input input' />
 
-                <button className='login-submit' onClick={handleLoginSubmit}>Login</button>
+                <button className='login-submit' type='submit'>Login</button>
             </form>
         )
     }

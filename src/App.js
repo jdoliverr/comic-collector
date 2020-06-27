@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, withRouter, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import UserContext from './UserContext';
 import Nav from './nav/Nav';
 import landing from './landing/landing';
@@ -9,6 +9,9 @@ import collection from './collection/collection';
 import wishlist from './wishlist/wishlist';
 import signup from './signup/signup';
 import addComic from './add-comic/add-comic';
+import TokenService from './services/token-service';
+import PrivateRoute from './utils/private-route';
+import PublicOnlyRoute from './utils/public-route';
 
 const baseUrl = 'http://localhost:8000/api';
 
@@ -32,7 +35,11 @@ class App extends React.Component {
   }
 
   getAllComics = () => {
-    fetch(`${baseUrl}/collection`)
+    fetch(`${baseUrl}/collection`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
       .then(res => {
         if (!res.ok) {
           return res.json().then(e => Promise.reject(e))
@@ -48,7 +55,11 @@ class App extends React.Component {
         console.error({ error })
       })
 
-    fetch(`${baseUrl}/wishlist`)
+    fetch(`${baseUrl}/wishlist`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
       .then(res => {
         if (!res.ok) {
           return res.json().then(e => Promise.reject(e))
@@ -63,14 +74,6 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
-
-  handleLoginSubmit = (event) => {
-    event.preventDefault();
-    this.setState({
-      logged_in: true
-    })
-    this.props.history.push('/home');
   }
 
   handleLogout = (event) => {
@@ -111,7 +114,8 @@ class App extends React.Component {
     return fetch(`${baseUrl}/collection/${comicId}`, {
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(comicUpdate) 
     })
@@ -143,7 +147,8 @@ class App extends React.Component {
     return fetch(`${baseUrl}/wishlist/${comicId}`, {
       method: 'PATCH',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(comicUpdate) 
     })
@@ -175,7 +180,8 @@ class App extends React.Component {
     return fetch(`${baseUrl}/collection`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: newComicString
     })
@@ -209,7 +215,8 @@ class App extends React.Component {
     return fetch(`${baseUrl}/wishlist`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: newComicString
     })
@@ -236,7 +243,8 @@ class App extends React.Component {
     fetch(`${baseUrl}/collection/${comicId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
       .then(() => {
@@ -253,7 +261,8 @@ class App extends React.Component {
     fetch(`${baseUrl}/wishlist/${comicId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
       .then(() => {
@@ -329,7 +338,6 @@ class App extends React.Component {
         deleteComicCollection: this.deleteComicCollection,
         deleteComicWishlist: this.deleteComicWishlist,
         logged_in: this.state.logged_in,
-        handleLoginSubmit: this.handleLoginSubmit,
         handleLogout: this.handleLogout,
         updateReadCollection: this.updateReadCollection,
         updateReadWishlist: this.updateReadWishlist,
@@ -346,13 +354,13 @@ class App extends React.Component {
             </Link>
           </header>
           <main className='App'>
-            <Route exact path='/' component={landing} />
-            <Route path='/home' component={home} />
-            <Route path='/login' component={login} />
-            <Route path='/signup' component={signup} />
-            <Route path='/collection' component={collection} />
-            <Route path='/wishlist' component={wishlist} />
-            <Route path='/addcomic' component={addComic} />
+            <PublicOnlyRoute exact path='/' component={landing} />
+            <PublicOnlyRoute path='/login' component={login} />
+            <PublicOnlyRoute path='/signup' component={signup} />
+            <PrivateRoute path='/home' component={home} />
+            <PrivateRoute path='/collection' component={collection} />
+            <PrivateRoute path='/wishlist' component={wishlist} />
+            <PrivateRoute path='/addcomic' component={addComic} />
           </main>
         </div>
       </UserContext.Provider>

@@ -4,10 +4,17 @@ import UserContext from '../UserContext'
 class signup extends React.Component {
     static contextType = UserContext;
 
+    handleSignupSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            logged_in: true
+        })
+        this.props.history.push('/home');
+    }
+
     render() {
-        const { handleLoginSubmit } = this.context
         return (
-            <form className="signup-form">
+            <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h2 className='page-header'>Create New Account</h2>
                 <label htmlFor="username-input" className='username-input-label input-label'>New Username</label>
                 <input type="text" name="username-input" className='username-input input' />
@@ -18,7 +25,7 @@ class signup extends React.Component {
                 <label htmlFor="retype-password-input" className='retype-password-input-label input-label'>Retype Password</label>
                 <input type="text" name="retype-password-input" className='retype-password-input input' />
 
-                <button className='signup-submit' onClick={handleLoginSubmit}>Submit</button>
+                <button className='signup-submit' type='submit' >Submit</button>
             </form>
         );
     }
