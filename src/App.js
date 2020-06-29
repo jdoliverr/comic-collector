@@ -20,18 +20,26 @@ class App extends React.Component {
     collection: [],
     wishlist: [],
     displayErrors: false,
-    logged_in: true,
-    inputValue: ''
+    inputValue: '',
+    currentUserId: null
+  }
+
+  componentDidMount() {
+    if(TokenService.hasAuthToken()) {
+      this.getAllComics()
+    }
+  }
+
+  setCurrentUser = (userId) => {
+    this.setState({
+      currentUserId: userId
+    })
   }
 
   handleInputValue = (event) => {
     this.setState({
       inputValue: event.target.value
     })
-  }
-
-  componentDidMount() {
-    this.getAllComics()
   }
 
   getAllComics = () => {
@@ -83,12 +91,13 @@ class App extends React.Component {
     const issue = event.target.issue.value
     const read = event.target.read.checked
     const description = event.target.description.value
+    const user_id = this.state.currentUserId
     const endpoint = event.target.destination.value
     if (endpoint === 'collection') {
-      this.addNewComicCollection(title, author, issue, read, description)
+      this.addNewComicCollection(title, author, issue, read, description, user_id)
       this.props.history.push('/collection');
     } else {
-      this.addNewComicWishlist(title, author, issue, read, description)
+      this.addNewComicWishlist(title, author, issue, read, description, user_id)
       this.props.history.push('/wishlist');
     }
   }
@@ -129,7 +138,6 @@ class App extends React.Component {
     const comic = this.state.wishlist.find(comic =>
       comic.id === comicId
     )
-    console.log(comic)
     const comicUpdate = {
       comic_title: comic.comic_title,
       comic_author: comic.comic_author,
@@ -158,6 +166,7 @@ class App extends React.Component {
       })
   }
 
+
   addNewComicCollection = (title, author, issue, read, description, user_id) => {
     const newComic = {
       comic_title: title,
@@ -165,7 +174,7 @@ class App extends React.Component {
       issue: issue,
       is_read: read,
       description: description,
-      user_id: 3,
+      user_id: user_id,
     }
     const newCollection = [...this.state.collection, newComic];
     const newComicString = JSON.stringify(newComic)
@@ -334,12 +343,14 @@ class App extends React.Component {
         handleSort: this.handleSort,
         handleInputValue: this.handleInputValue,
         filteredList: filteredList,
-        inputValue: this.handleInputValue
+        inputValue: this.handleInputValue,
+        getAllComics: this.getAllComics,
+        setCurrentUser: this.setCurrentUser
       }} >
         <div>
           <Nav />
           <header>
-            <Link to='/home'>
+            <Link to='/home' className='nav-link app-title'>
               <h1>Comic Collector</h1>
             </Link>
           </header>

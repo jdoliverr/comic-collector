@@ -21,19 +21,28 @@ nav {
   top: 0;
   right: 0;
   left: 0;
-  background-color: rgb(190, 190, 190);
+  background-color: rgb(13, 116, 252);
   display: flex;
   justify-content: space-around;
 }
 
 .nav-link {
   font-size: 17px;
+  text-decoration: none;
   margin: 10px;
+}
+
+.nav-link:visited {
+  color: rgb(0, 0, 0);
 }
 
 header {
   text-align: center;
   padding-top: 30px;
+}
+
+.app-title {
+  text-decoration: none;
 }
 
 .landing-container {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 function landing(props) {
-    console.log('landing');
     return (
         <div className='landing-container'>
             <h2 className='page-header'>Track your comic book collection</h2>

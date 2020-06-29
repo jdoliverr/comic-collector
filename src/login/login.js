@@ -10,6 +10,7 @@ class login extends React.Component {
     }
 
     handleSubmitJwtAuth = event => {
+        const { getAllComics, setCurrentUser } = this.context
         event.preventDefault()
         this.setState({ error: null })
         const { user_name, password } = event.target
@@ -22,8 +23,11 @@ class login extends React.Component {
                 
                 user_name.value = ''
                 password.value = ''
+                setCurrentUser(res.user_id)
                 TokenService.saveAuthToken(res.authToken)
                 this.props.history.push('/home')
+                getAllComics()
+                
             })
             .catch(res => {
                 this.setState({ error: res.error })

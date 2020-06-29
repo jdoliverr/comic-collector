@@ -2,16 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function home(props) {
-    console.log('home');
     return (
         <div>
-            <Link to='/collection'>
+            <Link to='/collection' className='nav-link'>
                 <div className='home-select'>
                     <h2>My Collection</h2>
                     <p>View your comic book collection</p>
                 </div>
             </Link>
-            <Link to='/wishlist'>
+            <Link to='/wishlist' className='nav-link'>
                 <div className='home-select'>
                     <h2>My Wish List</h2>
                     <p>View your comic book wish list</p>
