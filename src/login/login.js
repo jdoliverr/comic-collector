@@ -9,17 +9,6 @@ class login extends React.Component {
         error: null,
     }
 
-    handleLoginSubmit = (event) => {
-        event.preventDefault();
-        TokenService.saveAuthToken(
-            TokenService.makeBasicAuthToken(event.target.userName.value, event.target.password)
-        )
-        this.setState({
-            logged_in: true
-        })
-        this.props.history.push('/home');
-    }
-
     handleSubmitJwtAuth = event => {
         event.preventDefault()
         this.setState({ error: null })
@@ -34,7 +23,7 @@ class login extends React.Component {
                 user_name.value = ''
                 password.value = ''
                 TokenService.saveAuthToken(res.authToken)
-                this.props.onLoginSuccess()
+                this.props.history.push('/home')
             })
             .catch(res => {
                 this.setState({ error: res.error })

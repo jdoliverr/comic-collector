@@ -76,14 +76,6 @@ class App extends React.Component {
       })
   }
 
-  handleLogout = (event) => {
-    event.preventDefault();
-    this.setState({
-      logged_in: false
-    })
-    this.props.history.push('/')
-  }
-
   handleAddComicSubmit = (event) => {
     event.preventDefault();
     const title = event.target.title.value
@@ -337,8 +329,6 @@ class App extends React.Component {
         handleAddComic: this.handleAddComicSubmit,
         deleteComicCollection: this.deleteComicCollection,
         deleteComicWishlist: this.deleteComicWishlist,
-        logged_in: this.state.logged_in,
-        handleLogout: this.handleLogout,
         updateReadCollection: this.updateReadCollection,
         updateReadWishlist: this.updateReadWishlist,
         handleSort: this.handleSort,

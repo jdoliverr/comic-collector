@@ -16,7 +16,7 @@ class collection extends React.Component {
                 read = 'no'
             }
             return (
-                <li key={comic.id}>
+                <li key={comic.id} >
                     <h3 name='title'>Title: {comic.comic_title}</h3>
                     <p><strong>Author(s):</strong> {comic.comic_author}</p>
                     <p><strong>Issue:</strong> {comic.issue}</p>
