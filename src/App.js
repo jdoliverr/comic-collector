@@ -28,9 +28,11 @@ class App extends React.Component {
     if(TokenService.hasAuthToken()) {
       this.getAllComics()
     }
+    this.setCurrentUser(window.localStorage.getItem('id'))
   }
 
   setCurrentUser = (userId) => {
+    window.localStorage.setItem('id', userId)
     this.setState({
       currentUserId: userId
     })
@@ -209,7 +211,7 @@ class App extends React.Component {
       issue: issue,
       is_read: read,
       description: description,
-      user_id: 3,
+      user_id: user_id,
     }
     const newWishlist = [...this.state.wishlist, newComic];
     const newComicString = JSON.stringify(newComic)
