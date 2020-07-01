@@ -29,7 +29,7 @@ nav {
   background-color: rgb(50, 4, 96);
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
 }
 
 
@@ -51,17 +51,12 @@ p, h3 {
   margin: 10px;
 }
 
-.nav-link:hover {
-  color: red
-}
-
 .comic {
   background-color: rgb(104, 22, 187);
 }
 
 .comic-description, .comic-author {
   word-wrap: break-word;
-  
 }
 
 .nav-link:visited {
@@ -240,6 +235,11 @@ button {
   background-color: rgb(197, 142, 253);
   border: 2px solid black;
   font-size: 16px;
+  /* transition: all .2s ease-in-out;  */
+}
+
+button:hover {
+  transform: scale(1.03);
 }
 
 .new-comic {

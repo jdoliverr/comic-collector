@@ -5,7 +5,7 @@ function landing(props) {
         <div className='landing-container'>
             <h2 className='page-header'>Track your comic book collection</h2>
             {/* These divs will be images. Screenshots of a sample colelction */}
-            <div className='placeholder'>
+            {/* <div className='placeholder'>
                 <h3>Title: Title1</h3>
                 <p><strong>Author(s):</strong> Author1</p>
                 <p><strong>Issue:</strong> 1</p>
@@ -21,7 +21,8 @@ function landing(props) {
                 <p><strong>Description:</strong> Sample2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, explicabo accusantium. Qui rem, laborum, unde quas modi porro consectetur eveniet dolores molestias dicta officiis nulla? Id facilis delectus tempora eos.</p>
                 <button className='fake-button'>Mark as Read</button>
                 <button className='fake-button'>Remove</button>
-            </div>
+            </div> */}
+            <img src='./../../images/comic-collection.jpg' alt='Comic collection screenshot' className='screenshot'/>
             <h2 className='page-header'>Keep a wish list so you know what issues you still need to pick up</h2>
             {/* These divs will be images. Screenshots of a sample colelction */}
             <div className='placeholder'>
