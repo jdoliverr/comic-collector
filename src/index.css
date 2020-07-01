@@ -26,19 +26,35 @@ nav {
   top: 0;
   right: 0;
   left: 0;
-  background-color: rgb(50, 4, 96);
+  background-color: #1f2932;
   display: flex;
   justify-content: space-around;
   /* border-bottom: 1px solid black; */
 }
 
+.screenshot {
+  margin-top: 15px;
+  margin-bottom: 50px;
+  width: 80%;
+  border: 2px solid black;
+}
+
+.screenshot-label {
+  text-align: center;
+  font-size: 14px;
+}
+
+.landing {
+  font-size: 30px;
+  text-align: center;
+}
 
 main {
   letter-spacing: 2px;
 }
 
 body {
-  background-color: rgb(223, 221, 233);
+  background-color: #a4a5a9;
 }
 
 p, h3 {
@@ -46,13 +62,14 @@ p, h3 {
 }
 
 .nav-link {
+  color: rgb(255, 255, 255);
   font-size: 16px;
   text-decoration: none;
   margin: 10px;
 }
 
 .comic {
-  background-color: rgb(104, 22, 187);
+  background-color: #3f5678;
 }
 
 .comic-description, .comic-author {
@@ -66,7 +83,7 @@ p, h3 {
 header {
   text-align: center;
   padding-top: 30px;
-  background-color: rgb(12, 57, 153);
+  background-color: #1f2932;
   border-bottom: 3px solid black;
 }
 
@@ -93,12 +110,6 @@ label {
   align-items: center;
 }
 
-.placeholder {
-  font-size: 10px;
-  border: 1px solid black;
-  padding: 3px;
-  margin: 15px
-}
 
 .fake-button {
   font-size: 8px;
@@ -106,6 +117,7 @@ label {
 }
 
 .big-button {
+  margin: 15px 0px 50px 0px;
   width: 170px;
   height: 35px;
   font-size: 20px;
@@ -119,7 +131,7 @@ label {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  background-color: rgb(104, 22, 187);
+  background-color: #3f5678;
   font-size: 17px;
   color: white;
 }
@@ -154,7 +166,7 @@ option {
 .collection-header, .wishlist-header {
   margin-top: 0;
   padding: 10px;
-  background-color: rgb(25, 81, 184);
+  background-color: #3f5678;
   border-bottom: 3px solid black;
 }
 
@@ -196,7 +208,7 @@ li {
 
 .collection-div {
   text-align: center;
-  background-color: rgb(65, 6, 125);
+  background-color: #3f5678;
   transition: all .2s ease-in-out;
   border: none;
   border-radius: 25px;
@@ -208,7 +220,7 @@ li {
 
 .wishlist-div {
   text-align: center;
-  background-color: rgb(65, 6, 125);
+  background-color: #3f5678;
   transition: all .2s ease-in-out; 
   border: none;
   border-radius: 25px;
@@ -232,7 +244,7 @@ button {
   margin-right: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: rgb(197, 142, 253);
+  background-color: #b392a3;
   border: 2px solid black;
   font-size: 16px;
   /* transition: all .2s ease-in-out;  */
@@ -251,7 +263,7 @@ button:hover {
   width: 175px;
   height: 30px;
   font-size: 18px;
-  background-color: rgb(0, 175, 31);
+  background-color: #58b15d;
 }
 
 input {
@@ -299,7 +311,7 @@ input {
   margin-right: auto;
   margin-left: auto;
   margin-top: 100px;
-  background-color: rgb(104, 22, 187);
+  background-color: #3f5678;
 }
 
 @media only screen and (min-width: 500px) {
@@ -311,6 +323,9 @@ input {
     margin-right: 30px;
   }
 
+  .screenshot {
+    width: 75%;
+  }
   /* .add-comic-input {
     width: 50%;
   } */
@@ -338,8 +353,8 @@ input {
 }
 
 @media only screen and (min-width: 800px) {
-  .placeholder {
-      width: 60%;
+  .screenshot {
+    width: 60%;
   }
 }
 
@@ -371,8 +386,8 @@ input {
 
 
 @media only screen and (min-width: 1200px) {
-  .placeholder {
-      width: 45%;
+  .screenshot {
+    width: 40%;
   }
 
   .home-select {
@@ -398,10 +413,6 @@ input {
 }
 
 @media only screen and (min-width: 1600px) {
-  .placeholder {
-      width: 35%;
-  }
-
   .title-input, .author-input, .issue-input {
     width: 30%;
   }

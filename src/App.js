@@ -285,6 +285,7 @@ class App extends React.Component {
     }
   }
 
+
   sortByTitle = () => {
     function compare(a, b) {
       const titleA = a.comic_title.toUpperCase()
@@ -330,9 +331,6 @@ class App extends React.Component {
   }
 
   render() {
-    const filteredList = this.state.collection.filter(comic => {
-      return comic.comic_title.toLowerCase().includes(this.state.inputValue.toLowerCase())
-    })
     return (
       <UserContext.Provider value={{
         collection: this.state.collection,
@@ -344,10 +342,10 @@ class App extends React.Component {
         updateReadWishlist: this.updateReadWishlist,
         handleSort: this.handleSort,
         handleInputValue: this.handleInputValue,
-        filteredList: filteredList,
         inputValue: this.handleInputValue,
         getAllComics: this.getAllComics,
-        setCurrentUser: this.setCurrentUser
+        setCurrentUser: this.setCurrentUser,
+        searchTerm: this.state.inputValue
       }} >
         <div>
           <Nav />

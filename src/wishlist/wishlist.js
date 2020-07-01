@@ -6,8 +6,11 @@ class wishlist extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort } = this.context
-        const comicList = wishlist.map(comic => {
+        const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort, handleInputValue, searchTerm } = this.context
+        const filteredWishlist = wishlist.filter(comic => {
+            return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase())
+        })
+        const comicList = filteredWishlist.map(comic => {
             let read = ''
             if (comic.is_read) {
                 read = 'yes'
@@ -41,7 +44,7 @@ class wishlist extends React.Component {
                     </div>
                     <div className="search-box">
                         <label htmlFor="search-collection">Search: </label>
-                        <input type="text" name="search-collection" />
+                        <input type="text" name="search-collection" onInput={handleInputValue}/>
                     </div>
                 </div>
                 <div className="button-bar">

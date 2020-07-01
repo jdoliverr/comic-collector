@@ -7,8 +7,12 @@ class collection extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { collection, deleteComicCollection, updateReadCollection, handleSort } = this.context
-        const comicList = collection.map(comic => {
+        const { collection, deleteComicCollection, updateReadCollection, handleSort, searchTerm, handleInputValue } = this.context
+        const filteredCollection = collection.filter(comic => {
+            return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase())
+        })
+        
+        const comicList = filteredCollection.map(comic => {
             let read = ''
             if (comic.is_read) {
                 read = 'Yes'
@@ -23,7 +27,7 @@ class collection extends React.Component {
                     <p><strong><u>Read:</u></strong> {read}</p>
                     <p className='comic-description'><strong><u>Description:</u></strong> {comic.description}</p>
                     <button onClick={() => updateReadCollection(comic.id)}>Mark as Read</button>
-                    <button className='delete-comic' onClick={() => deleteComicCollection(comic.id)}>Remove</button>
+                    <button className='delete-comic' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this comic?')) deleteComicCollection(comic.id) }}>Remove</button>
                 </li>
             )
         })
@@ -42,7 +46,7 @@ class collection extends React.Component {
                     </div>
                     <div className="search-box">
                         <label htmlFor="search-collection">Search: </label>
-                        <input type="text" name="search-collection" />
+                        <input type="text" name="search-collection" onInput={handleInputValue} />
                     </div>
                 </div>
                 <div className="button-bar">
@@ -53,8 +57,6 @@ class collection extends React.Component {
                 <ul className="comics-list">
                     {comicList}
                 </ul>
-                {/* likely moving add button to top of screen */}
-
             </div>
         )
     }
