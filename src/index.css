@@ -304,7 +304,7 @@ input {
 }
 
 .login-form, .signup-form {
-  border: 1px solid black;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
   padding: 10px;

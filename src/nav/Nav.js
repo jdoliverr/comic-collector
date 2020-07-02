@@ -8,6 +8,7 @@ class Nav extends React.Component {
 
     handleLogout = () => {
         TokenService.clearAuthToken()
+        TokenService.clearId()
     }
     render() {
         if (TokenService.hasAuthToken()) {

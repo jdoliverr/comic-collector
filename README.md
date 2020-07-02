@@ -2,9 +2,85 @@
 Comic Collector
 
 <!-- Link to live app -->
+[a link](https://comic-collector.vercel.app/)
 
 <!-- Api Documentation -->
+Base url- https://peaceful-lowlands-92283.herokuapp.com/api/
+Endpoints
+    path('/collection')
+        requires headers: { 
+            "Authorization": "bearer (user auth token)" 
+            }
+        
+        GET return all comics in specified users collection(user dtermined by authtoken)
+        
+        POST request body: { 
+            "comic_title": (text), 
+            "comic_author": (text), 
+            "is_read": (boolean), 
+            "description": (text), 
+            "user_id": (integer associated with user), 
+            "issue": (integer)
+            }
 
+    path('/collection/:id')
+        requires headers: { 
+            "Authorization": "bearer (user auth token)" 
+            }
+
+        DELETE :id should be the id of the comic you wish to delete
+
+        PATCH :id should be the id of the comic you wish to update. only is_read can be updated at this time
+            request body: {
+                "is_read": (boolean)
+            }
+
+    path('/wishlist')
+        requires headers: { 
+            "Authorization": "bearer (user auth token)" 
+            }
+        
+        GET return all comics in specified users wishlist(user dtermined by authtoken)
+        
+        POST request body: { 
+            "comic_title": (text), 
+            "comic_author": (text), 
+            "is_read": (boolean), 
+            "description": (text), 
+            "user_id": (integer associated with user), 
+            "issue": (integer)
+            }
+
+    path('/wishlist/:id')
+        requires headers: { 
+            "Authorization": "bearer (user auth token)" 
+            }
+
+        DELETE :id should be the id of the comic you wish to delete
+
+        PATCH :id should be the id of the comic you wish to update. only is_read can be updated at this time
+            request body: {
+                "is_read": (boolean)
+            }
+
+    path('/auth/login')
+        POST compare login credentials to user database to verify login info requires headers: {
+                "content-type": "application/json",
+            },
+            body{
+                "user_name": (username),
+                "password": (password)
+            }
+
+    path('/users')
+        POST register a username and password for a new user. password must be longer than 8 characters. password must be less than 72 characters. Password must not start with or end with empty spaces. Password must contain 1 upper case, one lower case, one number, and one special character. Username must be unique.
+        requires headers: {
+                "content-type": "application/json",
+            },
+            body{
+                "user_name": (unique username),
+                "password": (valid password)
+            }
 <!-- Screenshots -->
 ![Alt text](https://github.com/jdoliverr/comic-collector/blob/master/public/images/ex-comic-collection.jpg?raw=true)
 

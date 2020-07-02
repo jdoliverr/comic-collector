@@ -304,6 +304,7 @@ class App extends React.Component {
 
 
   sortByTitle = () => {
+    // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
       const titleA = a.comic_title.toUpperCase()
       const titleB = b.comic_title.toUpperCase()
@@ -326,6 +327,7 @@ class App extends React.Component {
   }
 
   sortByAuthor = () => {
+    // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
       const authorA = a.comic_author.toUpperCase()
       const authorB = b.comic_author.toUpperCase()
@@ -349,6 +351,7 @@ class App extends React.Component {
 
   render() {
     return (
+      // context to pass from this file to anywhere else in the app
       <UserContext.Provider value={{
         collection: this.state.collection,
         wishlist: this.state.wishlist,
@@ -371,6 +374,7 @@ class App extends React.Component {
               <h1>Comic Collector</h1>
             </Link>
           </header>
+          {/* Renders different pages based on the given url path. Private requires authentication, Public requires no authentication */}
           <main className='App'>
             <PublicOnlyRoute exact path='/' component={landing} />
             <PublicOnlyRoute path='/login' component={login} />
