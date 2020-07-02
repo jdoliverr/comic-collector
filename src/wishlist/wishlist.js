@@ -25,7 +25,7 @@ class wishlist extends React.Component {
                     <p><strong><u>Read:</u></strong> {read}</p>
                     <p className='comic-description'><strong><u>Description:</u></strong> {comic.description}</p>
                     <button onClick={() => updateReadWishlist(comic.id)}>Mark as Read</button>
-                    <button className='delete-comic' onClick={() => deleteComicWishlist(comic.id)}>Remove</button>
+                    <button className='delete-comic' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this comic?')) deleteComicWishlist(comic.id) }}>Remove</button>
                 </li>
             )
         });

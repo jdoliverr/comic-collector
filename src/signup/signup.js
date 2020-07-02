@@ -20,9 +20,10 @@ class signup extends React.Component {
             .then(user => {
                 event.target.user_name.value = ''
                 event.target.password.value = ''
-                this.props.onRegisterationSuccess()
+                this.props.history.push('/login')
             })
             .catch(res => {
+                window.alert(res.error)
                 this.setState({ error: res.error })
             })
     }
@@ -32,10 +33,10 @@ class signup extends React.Component {
             <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h2 className='page-header'>Create New Account</h2>
                 <label htmlFor="username-input" className='username-input-label input-label'>New Username</label>
-                <input type="text" name="user_name" className='username-input input' required/>
+                <input type="text" name="user_name" className='username-input input' autoComplete='off' required/>
 
                 <label htmlFor="password-input" className='password-input-label input-label'>New Password</label>
-                <input type="text" name="password" className='password-input input' minLength='8' maxLength='72' required/>
+                <input type="password" name="password" className='password-input input' minLength='8' maxLength='72' autoComplete='off' required/>
 
                 {/* <label htmlFor="retype-password-input" className='retype-password-input-label input-label'>Retype Password</label>
                 <input type="text" name="retype-password-input" className='retype-password-input input' /> */}

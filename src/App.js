@@ -12,8 +12,7 @@ import addComic from './add-comic/add-comic';
 import TokenService from './services/token-service';
 import PrivateRoute from './utils/private-route';
 import PublicOnlyRoute from './utils/public-route';
-
-const baseUrl = 'http://localhost:8000/api';
+import config from './config';
 
 class App extends React.Component {
   state = {
@@ -45,7 +44,7 @@ class App extends React.Component {
   }
 
   getAllComics = () => {
-    fetch(`${baseUrl}/collection`, {
+    fetch(`${config.API_ENDPOINT}/collection`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -65,7 +64,7 @@ class App extends React.Component {
         console.error({ error })
       })
 
-    fetch(`${baseUrl}/wishlist`, {
+    fetch(`${config.API_ENDPOINT}/wishlist`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       }
@@ -114,7 +113,7 @@ class App extends React.Component {
       is_read: !comic.is_read,
       description: comic.description,
     }
-    return fetch(`${baseUrl}/collection/${comicId}`, {
+    return fetch(`${config.API_ENDPOINT}/collection/${comicId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -146,7 +145,7 @@ class App extends React.Component {
       is_read: !comic.is_read,
       description: comic.description,
     }
-    return fetch(`${baseUrl}/wishlist/${comicId}`, {
+    return fetch(`${config.API_ENDPOINT}/wishlist/${comicId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -178,9 +177,8 @@ class App extends React.Component {
       description: description,
       user_id: user_id,
     }
-    const newCollection = [...this.state.collection, newComic];
     const newComicString = JSON.stringify(newComic)
-    return fetch(`${baseUrl}/collection`, {
+    return fetch(`${config.API_ENDPOINT}/collection`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -194,9 +192,19 @@ class App extends React.Component {
         }
         return res.json()
       })
-      .then(() => {
+      .then(comic => {
+        const addedComic = {
+          id: comic.id,
+          comic_title: comic.comic_title,
+          comic_author: comic.comic_author,
+          issue: comic.issue,
+          is_read: comic.is_read,
+          description: comic.description,
+          user_id: comic.user_id,
+        }
+        const updatedCollection = [...this.state.collection, addedComic];
         this.setState({
-          collection: newCollection
+          collection: updatedCollection
         })
       })
       .catch(error => {
@@ -213,9 +221,8 @@ class App extends React.Component {
       description: description,
       user_id: user_id,
     }
-    const newWishlist = [...this.state.wishlist, newComic];
     const newComicString = JSON.stringify(newComic)
-    return fetch(`${baseUrl}/wishlist`, {
+    return fetch(`${config.API_ENDPOINT}/wishlist`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -229,9 +236,19 @@ class App extends React.Component {
         }
         return res.json()
       })
-      .then(() => {
+      .then(comic => {
+        const addedComic = {
+          id: comic.id,
+          comic_title: comic.comic_title,
+          comic_author: comic.comic_author,
+          issue: comic.issue,
+          is_read: comic.is_read,
+          description: comic.description,
+          user_id: comic.user_id,
+        }
+        const updatedWishlist = [...this.state.wishlist, addedComic];
         this.setState({
-          wishlist: newWishlist
+          wishlist: updatedWishlist
         })
       })
       .catch(error => {
@@ -243,7 +260,7 @@ class App extends React.Component {
     const newCollection = this.state.collection.filter(comic =>
       comic.id !== comicId
     )
-    fetch(`${baseUrl}/collection/${comicId}`, {
+    fetch(`${config.API_ENDPOINT}/collection/${comicId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
@@ -261,7 +278,7 @@ class App extends React.Component {
     const newWishlist = this.state.wishlist.filter(comic =>
       comic.id !== comicId
     )
-    fetch(`${baseUrl}/wishlist/${comicId}`, {
+    fetch(`${config.API_ENDPOINT}/wishlist/${comicId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',

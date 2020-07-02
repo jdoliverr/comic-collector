@@ -27,9 +27,9 @@ class login extends React.Component {
                 TokenService.saveAuthToken(res.authToken)
                 this.props.history.push('/home')
                 getAllComics()
-                
             })
             .catch(res => {
+                window.alert(res.error)
                 this.setState({ error: res.error })
             })
     }
@@ -42,7 +42,7 @@ class login extends React.Component {
                 <input type="text" name="user_name" id='username-input' className='username-input input' />
 
                 <label htmlFor="password-input" className='password-input-label input-label'>Password</label>
-                <input type="text" name="password" id='password-input' className='password-input input' />
+                <input type="password" name="password" id='password-input' className='password-input input' autoComplete='off'/>
 
                 <button className='login-submit' type='submit'>Login</button>
             </form>
