@@ -6,13 +6,13 @@ class signup extends React.Component {
     static contextType = UserContext;
     state = {
         error: null
-    }
+    };
 
     handleSignupSubmit = (event) => {
         event.preventDefault();
         this.setState({
             logged_in: true
-        })
+        });
         AuthApiService.postUser({
             user_name: event.target.user_name.value,
             password: event.target.password.value,
@@ -25,8 +25,8 @@ class signup extends React.Component {
             .catch(res => {
                 window.alert(res.error)
                 this.setState({ error: res.error })
-            })
-    }
+            });
+    };
 
     render() {
         return (
@@ -44,8 +44,7 @@ class signup extends React.Component {
                 <button className='signup-submit' type='submit' >Submit</button>
             </form>
         );
-    }
-
+    };
 };
 
 export default signup;

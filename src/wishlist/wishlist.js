@@ -6,17 +6,17 @@ class wishlist extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort, handleInputValue, searchTerm } = this.context
+        const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort, handleInputValue, searchTerm } = this.context;
         const filteredWishlist = wishlist.filter(comic => {
-            return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase())
-        })
+            return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase());
+        });
         const comicList = filteredWishlist.map(comic => {
-            let read = ''
+            let read = '';
             if (comic.is_read) {
                 read = 'yes'
             } else {
                 read = 'no'
-            }
+            };
             return (
                 <li key={comic.id} className='comic'>
                     <h3 name='title'><u>Title:</u> {comic.comic_title}</h3>
@@ -55,11 +55,9 @@ class wishlist extends React.Component {
                 <ul className="comics-list">
                     {comicList}
                 </ul>
-                {/* likely moving add button to top of page */}
             </div>
-        )
-    }
-
+        );
+    };
 };
 
 export default wishlist;

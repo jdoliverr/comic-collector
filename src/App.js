@@ -21,27 +21,27 @@ class App extends React.Component {
     displayErrors: false,
     inputValue: '',
     currentUserId: null
-  }
+  };
 
   componentDidMount() {
     if(TokenService.hasAuthToken()) {
       this.getAllComics()
     }
     this.setCurrentUser(window.localStorage.getItem('id'))
-  }
+  };
 
   setCurrentUser = (userId) => {
     window.localStorage.setItem('id', userId)
     this.setState({
       currentUserId: userId
     })
-  }
+  };
 
   handleInputValue = (event) => {
     this.setState({
       inputValue: event.target.value
     })
-  }
+  };
 
   getAllComics = () => {
     fetch(`${config.API_ENDPOINT}/collection`, {
@@ -83,7 +83,7 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
+  };
 
   handleAddComicSubmit = (event) => {
     event.preventDefault();
@@ -101,7 +101,7 @@ class App extends React.Component {
       this.addNewComicWishlist(title, author, issue, read, description, user_id)
       this.props.history.push('/wishlist');
     }
-  }
+  };
 
   updateReadCollection = (comicId) => {
     const comic = this.state.collection.find(comic =>
@@ -133,7 +133,7 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
+  };
 
   updateReadWishlist = (comicId) => {
     const comic = this.state.wishlist.find(comic =>
@@ -165,8 +165,7 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
-
+  };
 
   addNewComicCollection = (title, author, issue, read, description, user_id) => {
     const newComic = {
@@ -210,7 +209,7 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
+  };
 
   addNewComicWishlist = (title, author, issue, read, description, user_id) => {
     const newComic = {
@@ -254,7 +253,7 @@ class App extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-  }
+  };
 
   deleteComicCollection = (comicId) => {
     const newCollection = this.state.collection.filter(comic =>
@@ -272,7 +271,7 @@ class App extends React.Component {
           collection: newCollection
         })
       })
-  }
+  };
 
   deleteComicWishlist = (comicId) => {
     const newWishlist = this.state.wishlist.filter(comic =>
@@ -290,7 +289,7 @@ class App extends React.Component {
           wishlist: newWishlist
         })
       })
-  }
+  };
 
   handleSort = (event) => {
     event.preventDefault()
@@ -300,8 +299,7 @@ class App extends React.Component {
     else if (event.target.value === 'author') {
       this.sortByAuthor()
     }
-  }
-
+  };
 
   sortByTitle = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
@@ -324,7 +322,7 @@ class App extends React.Component {
       collection: sortedCollection,
       wishlist: sortedWishlist
     })
-  }
+  };
 
   sortByAuthor = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
@@ -347,7 +345,7 @@ class App extends React.Component {
       collection: sortedCollection,
       wishlist: sortedWishlist
     })
-  }
+  };
 
   render() {
     return (
@@ -388,6 +386,6 @@ class App extends React.Component {
       </UserContext.Provider>
     );
   };
-}
+};
 
 export default withRouter(App);

@@ -21,11 +21,8 @@ function home(props) {
                     <p className='homepage-text'>View your comic book wish list</p>
                 </div>
             </Link>
-
-            {/* likely moving add button to top of screen */}
-            
         </div>
-    )
+    );
 };
 
 export default home;

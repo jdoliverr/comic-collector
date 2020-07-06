@@ -15,7 +15,7 @@ function landing(props) {
             <label htmlFor='big-button' className='screenshot-label'>(This is a sample button)</label>
             <button className="big-button" id='big-button'>Mark as Read</button>
         </div>
-    )
+    );
 };
 
 export default landing;

@@ -33,7 +33,7 @@ class addComic extends React.Component {
                 <button className="add-comic-submit" type='submit' >Submit</button>
             </form>
         );
-    }
+    };
 };
 
 export default addComic;

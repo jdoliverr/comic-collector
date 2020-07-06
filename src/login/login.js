@@ -10,10 +10,10 @@ class login extends React.Component {
     }
 
     handleSubmitJwtAuth = event => {
-        const { getAllComics, setCurrentUser } = this.context
-        event.preventDefault()
-        this.setState({ error: null })
-        const { user_name, password } = event.target
+        const { getAllComics, setCurrentUser } = this.context;
+        event.preventDefault();
+        this.setState({ error: null });
+        const { user_name, password } = event.target;
 
         AuthApiService.postLogin({
             user_name: user_name.value,
@@ -31,8 +31,8 @@ class login extends React.Component {
             .catch(res => {
                 window.alert(res.error)
                 this.setState({ error: res.error })
-            })
-    }
+            });
+    };
 
     render() {
         return (
@@ -46,9 +46,8 @@ class login extends React.Component {
 
                 <button className='login-submit' type='submit'>Login</button>
             </form>
-        )
-    }
-
+        );
+    };
 };
 
 export default login;

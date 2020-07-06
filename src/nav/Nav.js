@@ -7,8 +7,8 @@ class Nav extends React.Component {
     static contextType = UserContext;
 
     handleLogout = () => {
-        TokenService.clearAuthToken()
-        TokenService.clearId()
+        TokenService.clearAuthToken();
+        TokenService.clearId();
     }
     render() {
         if (TokenService.hasAuthToken()) {
@@ -19,15 +19,15 @@ class Nav extends React.Component {
                     <NavLink to='/wishlist' className='nav-link'>Wish List</NavLink>
                     <NavLink to='/' className='nav-link' onClick={this.handleLogout}>Log Out</NavLink>
                 </nav>
-            )
-        }
+            );
+        };
         return (
             <nav>
                 <NavLink to='/login' className='nav-link'>Login</NavLink>
                 <NavLink to='/signup' className='nav-link'>Signup</NavLink>
             </nav>
-        )
-    }
+        );
+    };
 };
 
 export default Nav;
