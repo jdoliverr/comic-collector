@@ -2,7 +2,7 @@
 Comic Collector
 
 <!-- Link to live app -->
-[a link](https://comic-collector.vercel.app/)
+[Live link](https://comic-collector.vercel.app/)
 
 <!-- Api Documentation -->
 Base url- https://peaceful-lowlands-92283.herokuapp.com/api/
