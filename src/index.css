@@ -1,12 +1,12 @@
 * {
   box-sizing: border-box;
   font-family: 'Comic Neue', cursive;
-};
+}
 
 body {
   margin: 0;
   background-color: #a4a5a9;
-};
+}
 
 nav {
   position: fixed;
@@ -16,43 +16,43 @@ nav {
   background-color: #1f2932;
   display: flex;
   justify-content: space-around;
-};
+}
 
 header {
   text-align: center;
   padding-top: 30px;
   background-color: #1f2932;
   border-bottom: 3px solid black;
-};
+}
 
 main {
   letter-spacing: 2px;
-};
+}
 
 input, textarea, select {
   border: 2px solid black;
-};
+}
 
 select {
   font-size: 14px;
-};
+}
 
 label {
   font-weight: 700;
   font-size: 18px;
-};
+}
 
 input {
   width: 45%;
-};
+}
 
 p, h3 {
   color: white;
-};
+}
 
 option {
   text-align: center;
-};
+}
 
 button {
   font-weight: 700;
@@ -62,15 +62,15 @@ button {
   background-color: #b392a3;
   border: 2px solid black;
   font-size: 16px;
-};
+}
 
 button:hover {
   transform: scale(1.03);
-};
+}
 
 h3 {
   margin-top: 5px;
-};
+}
 
 ul {
   list-style: none;
@@ -78,75 +78,75 @@ ul {
   flex-direction: column;
   align-items: center;
   padding-left: 0px;
-};
+}
 
 li {
   border-radius: 25px;
   width: 90%;
   padding: 15px;
   margin-bottom: 20px;
-};
+}
 
 .app-title {
   text-decoration: none;
-};
+}
 
 .nav-link {
   color: rgb(255, 255, 255);
   font-size: 16px;
   text-decoration: none;
   margin: 10px;
-};
+}
 
 .nav-link:visited {
   color: rgb(255, 255, 255);
-};
+}
 
 .page-header {
   text-align: center;
   color: white;
-};
+}
 
 .input-label {
   margin: 10px;
   color: white;
-};
+}
 
 .input {
   width: 90%;
   margin: 10px;
-};
+}
 
 /* landing */
 .landing {
   font-size: 30px;
   text-align: center;
-};
+}
 
 .screenshot {
   margin-top: 15px;
   margin-bottom: 50px;
   width: 80%;
   border: 2px solid black;
-};
+}
 
 .screenshot-label {
   text-align: center;
   font-size: 14px;
-};
+}
 
 .landing-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-};
+}
 
 .big-button {
   margin: 15px 0px 50px 0px;
   width: 170px;
   height: 35px;
   font-size: 20px;
-};
+}
 
 /* home */
 .home-select {
@@ -154,7 +154,7 @@ li {
   margin: 20px;
   padding: 10px;
   padding-left: 20px;
-};
+}
 
 .collection-div {
   text-align: center;
@@ -162,11 +162,11 @@ li {
   transition: all .2s ease-in-out;
   border: none;
   border-radius: 25px;
-};
+}
 
 .collection-div:hover {
   transform: scale(1.03);
-};
+}
 
 .wishlist-div {
   text-align: center;
@@ -174,22 +174,22 @@ li {
   transition: all .2s ease-in-out; 
   border: none;
   border-radius: 25px;
-};
+}
 
 .wishlist-div:hover {
   transform: scale(1.03);
-};
+}
 
 .homepage-text {
   font-size: 19px;
-};
+}
 
 /* login signup */
 
 .login-submit, .signup-submit {
   width: 100px;
   margin: 10px;
-};
+}
 
 .login-form, .signup-form {
   border-radius: 25px;
@@ -200,27 +200,27 @@ li {
   margin-left: auto;
   margin-top: 100px;
   background-color: #3f5678;
-};
+}
 
 /* collection wishlist */
 .comic {
   background-color: #3f5678;
-};
+}
 
 .comic-description, .comic-author {
   word-wrap: break-word;
-};
+}
 
 .mark-as-read {
   height: 15px;
-};
+}
 
 .collection-header, .wishlist-header {
   margin-top: 0;
   padding: 10px;
   background-color: #3f5678;
   border-bottom: 3px solid black;
-};
+}
 
 .button-bar {
   width: 100%;
@@ -229,29 +229,29 @@ li {
   justify-content: flex-end;
   border: none;
   margin-top: 15px;
-};
+}
 
 .sort-box {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
-};
+}
 
 .search-box {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
-};
+}
 
 .sort-and-search {
   display: flex;
   justify-content: space-around;
   margin: 0 20px;
-};
+}
 
 .new-comic {
   margin-right: 20px;
-};
+}
 
 .new-comic-button {
   margin-right: 0;
@@ -259,7 +259,7 @@ li {
   height: 30px;
   font-size: 18px;
   background-color: #58b15d;
-};
+}
 
 
 /* comic form */
@@ -274,113 +274,113 @@ li {
   background-color: #3f5678;
   font-size: 17px;
   color: white;
-};
+}
 
 .description-input {
   height: 100px;
   resize: none;
-};
+}
 
 .add-comic-input {
   margin: 10px;
   width: 70%;
-};
+}
 
 .add-comic-submit {
   margin: 15px;
-};
+}
 
 @media only screen and (min-width: 500px) {
   .login-form, .signup-form, .add-comic-form {
       width: 70%;
-  };
+  }
 
   .new-comic {
     margin-right: 30px;
-  };
+  }
 
   .screenshot {
     width: 75%;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 700px) {
   li {
       width: 70%;
-  };
+  }
 
   .login-form, .signup-form, .add-comic-form {
     width: 60%;
-  };
+  }
 
   .title-input, .author-input, .issue-input {
     width: 40%;
-  };
+  }
 
   .new-comic {
     margin-right: 15%;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 800px) {
   .screenshot {
     width: 60%;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 900px) {
   .login-form, .signup-form {
       width: 50%;
       height: 320px;
-  };
+  }
 
   .add-comic-form {
     width: 50%;
     height: 525px;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 1000px) {
   li {
       width: 60%;
-  };
+  }
 
   .login-form, .signup-form, .add-comic-form {
     width: 30%;
-  };
+  }
 
   .new-comic {
     margin-right: 20%;
-  };
-};
+  }
+}
 
 
 @media only screen and (min-width: 1200px) {
   .screenshot {
     width: 40%;
-  };
+  }
 
   .home-select {
     margin-right: 15%;
     margin-left: 15%;
     height: 200px;
-  };
+  }
 
   .homepage-text {
     margin-top: 50px;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 1500px) {
   .home-select {
     margin-right: 20%;
     margin-left: 20%;
     height: 200px;
-  };
-};
+  }
+}
 
 @media only screen and (min-width: 1600px) {
   .title-input, .author-input, .issue-input {
     width: 30%;
-  };
-};
+  }
+}
