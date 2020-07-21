@@ -10,16 +10,16 @@ class signup extends React.Component {
 
     handleSignupSubmit = (event) => {
         event.preventDefault();
-        this.setState({
-            logged_in: true
-        });
+        event.persist();
         AuthApiService.postUser({
             user_name: event.target.user_name.value,
             password: event.target.password.value,
         })
-            .then(user => {
-                event.target.user_name.value = ''
-                event.target.password.value = ''
+            .then(res => {
+                if (!res.ok) {
+                    event.target.user_name.value = ''
+                    event.target.password.value = ''
+                }
                 this.props.history.push('/login')
             })
             .catch(res => {
@@ -33,10 +33,10 @@ class signup extends React.Component {
             <form className="signup-form" onSubmit={this.handleSignupSubmit}>
                 <h2 className='page-header'>Create New Account</h2>
                 <label htmlFor="username-input" className='username-input-label input-label'>New Username</label>
-                <input type="text" name="user_name" className='username-input input' autoComplete='off' required/>
+                <input type="text" name="user_name" className='username-input input' autoComplete='off' required />
 
                 <label htmlFor="password-input" className='password-input-label input-label'>New Password</label>
-                <input type="password" name="password" className='password-input input' minLength='8' maxLength='72' autoComplete='off' required/>
+                <input type="password" name="password" className='password-input input' minLength='8' maxLength='72' autoComplete='off' required />
 
                 {/* <label htmlFor="retype-password-input" className='retype-password-input-label input-label'>Retype Password</label>
                 <input type="text" name="retype-password-input" className='retype-password-input input' /> */}
