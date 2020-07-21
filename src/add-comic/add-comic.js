@@ -5,7 +5,7 @@ class addComic extends React.Component {
     static contextType = UserContext;
 
     render() {
-        const { handleAddComic } = this.context
+        const { handleAddComic } = this.context;
         return (
             <form className="add-comic-form" onSubmit={handleAddComic}>
                 <h2>New Comic</h2>

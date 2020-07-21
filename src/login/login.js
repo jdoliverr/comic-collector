@@ -7,7 +7,7 @@ class login extends React.Component {
     static contextType = UserContext;
     state = {
         error: null,
-    }
+    };
 
     handleSubmitJwtAuth = event => {
         const { getAllComics, setCurrentUser } = this.context;

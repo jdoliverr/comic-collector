@@ -25,22 +25,22 @@ class App extends React.Component {
 
   componentDidMount() {
     if(TokenService.hasAuthToken()) {
-      this.getAllComics()
+      this.getAllComics();
     }
-    this.setCurrentUser(window.localStorage.getItem('id'))
+    this.setCurrentUser(window.localStorage.getItem('id'));
   };
 
   setCurrentUser = (userId) => {
-    window.localStorage.setItem('id', userId)
+    window.localStorage.setItem('id', userId);
     this.setState({
       currentUserId: userId
-    })
+    });
   };
 
   handleInputValue = (event) => {
     this.setState({
       inputValue: event.target.value
-    })
+    });
   };
 
   getAllComics = () => {
@@ -51,18 +51,18 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(resJson => {
         this.setState({
           collection: resJson
-        })
+        });
       })
       .catch(error => {
-        console.error({ error })
-      })
+        console.error({ error });
+      });
 
     fetch(`${config.API_ENDPOINT}/wishlist`, {
       headers: {
@@ -71,48 +71,48 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(resJson => {
         this.setState({
           wishlist: resJson
-        })
+        });
       })
       .catch(error => {
-        console.error({ error })
-      })
+        console.error({ error });
+      });
   };
 
   handleAddComicSubmit = (event) => {
     event.preventDefault();
-    const title = event.target.title.value
-    const author = event.target.author.value
-    const issue = event.target.issue.value
-    const read = event.target.read.checked
-    const description = event.target.description.value
-    const user_id = this.state.currentUserId
-    const endpoint = event.target.destination.value
+    const title = event.target.title.value;
+    const author = event.target.author.value;
+    const issue = event.target.issue.value;
+    const read = event.target.read.checked;
+    const description = event.target.description.value;
+    const user_id = this.state.currentUserId;
+    const endpoint = event.target.destination.value;
     if (endpoint === 'collection') {
-      this.addNewComicCollection(title, author, issue, read, description, user_id)
+      this.addNewComicCollection(title, author, issue, read, description, user_id);
       this.props.history.push('/collection');
     } else {
-      this.addNewComicWishlist(title, author, issue, read, description, user_id)
+      this.addNewComicWishlist(title, author, issue, read, description, user_id);
       this.props.history.push('/wishlist');
-    }
+    };
   };
 
   updateReadCollection = (comicId) => {
     const comic = this.state.collection.find(comic =>
       comic.id === comicId
-    )
+    );
     const comicUpdate = {
       comic_title: comic.comic_title,
       comic_author: comic.comic_author,
       is_read: !comic.is_read,
       description: comic.description,
-    }
+    };
     return fetch(`${config.API_ENDPOINT}/collection/${comicId}`, {
       method: 'PATCH',
       headers: {
@@ -123,28 +123,28 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(() => {
-        this.getAllComics()
+        this.getAllComics();
       })
       .catch(error => {
-        console.error({ error })
-      })
+        console.error({ error });
+      });
   };
 
   updateReadWishlist = (comicId) => {
     const comic = this.state.wishlist.find(comic =>
       comic.id === comicId
-    )
+    );
     const comicUpdate = {
       comic_title: comic.comic_title,
       comic_author: comic.comic_author,
       is_read: !comic.is_read,
       description: comic.description,
-    }
+    };
     return fetch(`${config.API_ENDPOINT}/wishlist/${comicId}`, {
       method: 'PATCH',
       headers: {
@@ -155,16 +155,16 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(() => {
-        this.getAllComics()
+        this.getAllComics();
       })
       .catch(error => {
-        console.error({ error })
-      })
+        console.error({ error });
+      });
   };
 
   addNewComicCollection = (title, author, issue, read, description, user_id) => {
@@ -175,8 +175,8 @@ class App extends React.Component {
       is_read: read,
       description: description,
       user_id: user_id,
-    }
-    const newComicString = JSON.stringify(newComic)
+    };
+    const newComicString = JSON.stringify(newComic);
     return fetch(`${config.API_ENDPOINT}/collection`, {
       method: 'POST',
       headers: {
@@ -187,9 +187,9 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(comic => {
         const addedComic = {
@@ -200,14 +200,14 @@ class App extends React.Component {
           is_read: comic.is_read,
           description: comic.description,
           user_id: comic.user_id,
-        }
+        };
         const updatedCollection = [...this.state.collection, addedComic];
         this.setState({
           collection: updatedCollection
-        })
+        });
       })
       .catch(error => {
-        console.error({ error })
+        console.error({ error });
       })
   };
 
@@ -219,8 +219,8 @@ class App extends React.Component {
       is_read: read,
       description: description,
       user_id: user_id,
-    }
-    const newComicString = JSON.stringify(newComic)
+    };
+    const newComicString = JSON.stringify(newComic);
     return fetch(`${config.API_ENDPOINT}/wishlist`, {
       method: 'POST',
       headers: {
@@ -231,9 +231,9 @@ class App extends React.Component {
     })
       .then(res => {
         if (!res.ok) {
-          return res.json().then(e => Promise.reject(e))
+          return res.json().then(e => Promise.reject(e));
         }
-        return res.json()
+        return res.json();
       })
       .then(comic => {
         const addedComic = {
@@ -244,21 +244,21 @@ class App extends React.Component {
           is_read: comic.is_read,
           description: comic.description,
           user_id: comic.user_id,
-        }
+        };
         const updatedWishlist = [...this.state.wishlist, addedComic];
         this.setState({
           wishlist: updatedWishlist
-        })
+        });
       })
       .catch(error => {
-        console.error({ error })
+        console.error({ error });
       })
   };
 
   deleteComicCollection = (comicId) => {
     const newCollection = this.state.collection.filter(comic =>
       comic.id !== comicId
-    )
+    );
     fetch(`${config.API_ENDPOINT}/collection/${comicId}`, {
       method: 'DELETE',
       headers: {
@@ -269,14 +269,14 @@ class App extends React.Component {
       .then(() => {
         this.setState({
           collection: newCollection
-        })
+        });
       })
   };
 
   deleteComicWishlist = (comicId) => {
     const newWishlist = this.state.wishlist.filter(comic =>
       comic.id !== comicId
-    )
+    );
     fetch(`${config.API_ENDPOINT}/wishlist/${comicId}`, {
       method: 'DELETE',
       headers: {
@@ -287,64 +287,64 @@ class App extends React.Component {
       .then(() => {
         this.setState({
           wishlist: newWishlist
-        })
+        });
       })
   };
 
   handleSort = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if(event.target.value === 'title') {
-      this.sortByTitle()
+      this.sortByTitle();
     }
     else if (event.target.value === 'author') {
-      this.sortByAuthor()
+      this.sortByAuthor();
     }
   };
 
   sortByTitle = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
-      const titleA = a.comic_title.toUpperCase()
-      const titleB = b.comic_title.toUpperCase()
+      const titleA = a.comic_title.toUpperCase();
+      const titleB = b.comic_title.toUpperCase();
 
-      let comparison = 0
+      let comparison = 0;
       if (titleA > titleB) {
-        comparison = 1
+        comparison = 1;
       }else if (titleA < titleB) {
-        comparison = -1
+        comparison = -1;
       }
-      return comparison
-    }
+      return comparison;
+    };
 
-    const sortedWishlist = [...this.state.wishlist].sort(compare)
-    const sortedCollection = [...this.state.collection].sort(compare)
+    const sortedWishlist = [...this.state.wishlist].sort(compare);
+    const sortedCollection = [...this.state.collection].sort(compare);
     this.setState({
       collection: sortedCollection,
       wishlist: sortedWishlist
-    })
+    });
   };
 
   sortByAuthor = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
-      const authorA = a.comic_author.toUpperCase()
-      const authorB = b.comic_author.toUpperCase()
+      const authorA = a.comic_author.toUpperCase();
+      const authorB = b.comic_author.toUpperCase();
 
-      let comparison = 0
+      let comparison = 0;
       if (authorA > authorB) {
-        comparison = 1
+        comparison = 1;
       }else if (authorA < authorB) {
-        comparison = -1
+        comparison = -1;
       }
-      return comparison
+      return comparison;
     }
 
-    const sortedWishlist = [...this.state.wishlist].sort(compare)
-    const sortedCollection = [...this.state.collection].sort(compare)
+    const sortedWishlist = [...this.state.wishlist].sort(compare);
+    const sortedCollection = [...this.state.collection].sort(compare);
     this.setState({
       collection: sortedCollection,
       wishlist: sortedWishlist
-    })
+    });
   };
 
   render() {
