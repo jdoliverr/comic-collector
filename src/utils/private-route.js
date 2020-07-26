@@ -4,6 +4,7 @@ import TokenService from '../services/token-service';
 
 export default function PrivateRoute({ component, ...props }) {
     const Component = component;
+    // setup Private routes that require a user to be logged in to access or the are redirected to login
     return (
         <Route
             {...props}

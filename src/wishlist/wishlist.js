@@ -7,6 +7,7 @@ class wishlist extends React.Component {
 
     render() {
         const { wishlist, deleteComicWishlist, updateReadWishlist, handleSort, handleInputValue, searchTerm } = this.context;
+        // this filters the wishlist using the search term from the search bar input
         const filteredWishlist = wishlist.filter(comic => {
             return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase());
         });

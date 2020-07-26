@@ -8,6 +8,7 @@ class signup extends React.Component {
         error: null
     };
 
+    // handles sign up input to post credentials to signup endpoint and create new user if credentials are valid
     handleSignupSubmit = (event) => {
         event.preventDefault();
         event.persist();

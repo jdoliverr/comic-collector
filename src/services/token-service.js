@@ -1,5 +1,6 @@
 import config from '../config';
 
+// service object with helper functions for handling tokens
 const TokenService = {
     saveAuthToken(token) {
         window.localStorage.setItem(config.TOKEN_KEY, token);

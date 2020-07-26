@@ -9,6 +9,7 @@ class login extends React.Component {
         error: null,
     };
 
+    // handler to take login input and post credentials to login endpoint
     handleSubmitJwtAuth = event => {
         const { getAllComics, setCurrentUser } = this.context;
         event.preventDefault();

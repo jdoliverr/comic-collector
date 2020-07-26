@@ -4,6 +4,7 @@ import TokenService from '../services/token-service';
 
 export default function PublicOnlyRoute({ component, ...props }) {
     const Component = component;
+    // creates public routes that are only visited if not logged in. if user is logged in they are redirected to home
     return (
         <Route
             {...props}

@@ -30,6 +30,7 @@ class App extends React.Component {
     this.setCurrentUser(window.localStorage.getItem('id'));
   };
 
+  // save the user id for a logged in user to be used when fetching comics
   setCurrentUser = (userId) => {
     window.localStorage.setItem('id', userId);
     this.setState({
@@ -37,12 +38,14 @@ class App extends React.Component {
     });
   };
 
+  // holds the searchbar value in state
   handleInputValue = (event) => {
     this.setState({
       inputValue: event.target.value
     });
   };
 
+  // gets all comics that belong to the user in wishlist and collection. Api gets the user id from the local storage
   getAllComics = () => {
     fetch(`${config.API_ENDPOINT}/collection`, {
       headers: {
@@ -85,6 +88,7 @@ class App extends React.Component {
       });
   };
 
+  // handler for the add comic form. Takes in the input values then either posts to collection or wishlist
   handleAddComicSubmit = (event) => {
     event.preventDefault();
     const title = event.target.title.value;
@@ -103,6 +107,7 @@ class App extends React.Component {
     };
   };
 
+  // sends a patch request to toggle the is_read on a given comic. is_read is stored in the database as a boolean and converted to yes or no for display on front end
   updateReadCollection = (comicId) => {
     const comic = this.state.collection.find(comic =>
       comic.id === comicId
@@ -135,6 +140,7 @@ class App extends React.Component {
       });
   };
 
+  // sends a patch request to toggle the is_read on a given comic. is_read is stored in the database as a boolean and converted to yes or no for display on front end
   updateReadWishlist = (comicId) => {
     const comic = this.state.wishlist.find(comic =>
       comic.id === comicId
@@ -167,6 +173,7 @@ class App extends React.Component {
       });
   };
 
+  // post for the collection endpoint. called in the submit handler
   addNewComicCollection = (title, author, issue, read, description, user_id) => {
     const newComic = {
       comic_title: title,
@@ -211,6 +218,7 @@ class App extends React.Component {
       })
   };
 
+  // post for the wishlist endpoint. called in the submit handler
   addNewComicWishlist = (title, author, issue, read, description, user_id) => {
     const newComic = {
       comic_title: title,
@@ -255,6 +263,7 @@ class App extends React.Component {
       })
   };
 
+  // deletes a given comic by id. attached to delete button for comics in the collection
   deleteComicCollection = (comicId) => {
     const newCollection = this.state.collection.filter(comic =>
       comic.id !== comicId
@@ -273,6 +282,7 @@ class App extends React.Component {
       })
   };
 
+  // deletes a given comic by id. attached to delete button for comics in the wishlist
   deleteComicWishlist = (comicId) => {
     const newWishlist = this.state.wishlist.filter(comic =>
       comic.id !== comicId
@@ -291,6 +301,7 @@ class App extends React.Component {
       })
   };
 
+  // attached to the sort dropdown to sort by either title or author
   handleSort = (event) => {
     event.preventDefault();
     if(event.target.value === 'title') {
@@ -301,6 +312,7 @@ class App extends React.Component {
     }
   };
 
+  // sorts alphabetically ascending by title
   sortByTitle = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
@@ -324,6 +336,7 @@ class App extends React.Component {
     });
   };
 
+  // sorts alphabetically ascending by author
   sortByAuthor = () => {
     // sets up the .sort to sort in ascending order based on the value of the letters in the title
     function compare(a, b) {
@@ -360,7 +373,6 @@ class App extends React.Component {
         updateReadWishlist: this.updateReadWishlist,
         handleSort: this.handleSort,
         handleInputValue: this.handleInputValue,
-        inputValue: this.handleInputValue,
         getAllComics: this.getAllComics,
         setCurrentUser: this.setCurrentUser,
         searchTerm: this.state.inputValue

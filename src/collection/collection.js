@@ -8,15 +8,16 @@ class collection extends React.Component {
 
     render() {
         const { collection, deleteComicCollection, updateReadCollection, handleSort, searchTerm, handleInputValue } = this.context;
+        // this filters the collection using the search term from the search bar input
         const filteredCollection = collection.filter(comic => {
             return comic.comic_title.toLowerCase().includes(searchTerm.toLowerCase());
         });
         const comicList = filteredCollection.map(comic => {
             let read = '';
             if (comic.is_read) {
-                read = 'Yes'
+                read = 'Yes';
             } else {
-                read = 'No'
+                read = 'No';
             };
             return (
                 <li key={comic.id} className='comic'>

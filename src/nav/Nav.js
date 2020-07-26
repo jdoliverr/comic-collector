@@ -6,10 +6,12 @@ import TokenService from '../services/token-service';
 class Nav extends React.Component {
     static contextType = UserContext;
 
+    // uses service functions to clear local storage 
     handleLogout = () => {
         TokenService.clearAuthToken();
         TokenService.clearId();
     };
+    
     render() {
         if (TokenService.hasAuthToken()) {
             return (
